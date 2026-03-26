@@ -10,7 +10,7 @@ Transform the existing PhD Dashboard Jekyll site into a full personal website. T
 ## Visual Identity
 
 ### Typography
-- **Headings**: Instrument Serif — warm, distinctive, editorial
+- **Headings**: Cormorant Garamond — warm, distinctive, editorial
 - **Body + UI**: Inter — clean, modern, excellent readability
 - **Monospace** (data, code, stack labels): JetBrains Mono
 
@@ -39,7 +39,7 @@ A faint SVG line drawing of a skull base sagittal cross-section rendered as thin
 ### Desktop
 - Minimal top bar, transparent over the hero
 - Transitions to frosted-glass (`backdrop-filter: blur`) on scroll
-- Left: name as wordmark (Instrument Serif, no logo)
+- Left: name as wordmark (Cormorant Garamond, no logo)
 - Right: **PhD** · **Projects** · **CV** · **Stack** · **Labs** · **Misc**
 - Far right: language toggle (EN / FR), understated
 
@@ -56,7 +56,7 @@ Full-viewport hero, then section previews.
 - Full viewport height
 - Off-white background with the skull-base SVG motif (right-aligned, ~6% opacity)
 - Left-aligned, vertically centered content:
-  - Name in Instrument Serif (~2.5rem)
+  - Name in Cormorant Garamond (~2.5rem)
   - *"Surgeon · Scientist · Engineer"* in spaced small-caps, terracotta
   - Two lines of context in body font, muted: CMF surgeon at Necker, PhD at Arts et Métiers, research summary
   - Subtle scroll indicator at bottom edge
@@ -204,8 +204,24 @@ Astro content collections with typed schemas for:
 - `assets/css/style.css` → `src/styles/global.css` (rewritten to match new identity)
 
 ## Future Features (Not in MVP)
+
+### Content & i18n
 - **Bilingual content**: French translations of all pages and content
+- **Real content population**: Replace placeholder/sample data with real CV entries, projects, and newsletter posts
+- **Profile photo**: Add real headshot to the hero or about section
+
+### Editing & Private Sections
 - **Web-based editor**: Headless CMS integration (Decap CMS or similar git-based editor) for adding/editing private markdown content from a browser — especially lab notebook and meeting notes
+- **Private section auth**: Add authentication or simple password gate beyond `noindex` for lab notebook and meetings
+- **Populate private sections**: Fill lab notebook and meetings pages with real entries
+
+### Pages & Features
 - **Publications & Communications**: Dedicated section for papers, talks, posters, invited lectures
 - **Search**: Site-wide search across public content
 - **Dark mode**: Optional, respecting `prefers-color-scheme`
+
+### Deployment & SEO
+- **Verify live deployment**: Confirm GitHub Pages site is working at the expected URL
+- **Open Graph meta tags**: Add social meta tags for rich link previews
+- **Verify sitemap & RSS in production**: Check that sitemap and RSS feed resolve correctly on the live site
+- **Privacy-respecting analytics**: Add lightweight analytics (e.g., Plausible or Umami)
