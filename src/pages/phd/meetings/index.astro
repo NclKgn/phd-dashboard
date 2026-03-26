@@ -3,7 +3,9 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
+const isDev = import.meta.env.DEV;
 const meetingEntries = (await getCollection('meetings'))
+  .filter((e) => isDev || !e.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
@@ -22,6 +24,7 @@ const meetingEntries = (await getCollection('meetings'))
             <time class="mono">{formattedDate}</time>
             <div>
               <h3>{meeting.data.title}</h3>
+              {meeting.data.draft && <span class="draft-badge mono">Draft</span>}
               {meeting.data.attendees.length > 0 && (
                 <p class="meeting-attendees">{meeting.data.attendees.join(', ')}</p>
               )}
@@ -94,5 +97,15 @@ const meetingEntries = (await getCollection('meetings'))
   .meeting-decisions li,
   .meeting-actions li {
     margin-bottom: 2px;
+  }
+
+  .draft-badge {
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    background: #fef3c7;
+    color: #92400e;
+    border-radius: 99px;
+    margin-left: 6px;
+    vertical-align: middle;
   }
 </style>

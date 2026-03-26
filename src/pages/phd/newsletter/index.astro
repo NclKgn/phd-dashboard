@@ -5,7 +5,9 @@ import { getCollection } from 'astro:content';
 import { t, getLocale, base } from '../../../i18n';
 
 const ui = t(getLocale());
+const isDev = import.meta.env.DEV;
 const posts = (await getCollection('newsletter'))
+  .filter((e) => isDev || !e.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
@@ -26,6 +28,7 @@ const posts = (await getCollection('newsletter'))
             <time class="mono">{formattedDate}</time>
             <div class="newsletter-item-body">
               <h3>{post.data.title}</h3>
+              {post.data.draft && <span class="draft-badge mono">Draft</span>}
               <p>{post.data.summary}</p>
             </div>
           </a>
@@ -91,6 +94,16 @@ const posts = (await getCollection('newsletter'))
   .newsletter-rss {
     margin-top: var(--space-xl);
     font-size: 0.82rem;
+  }
+
+  .draft-badge {
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    background: #fef3c7;
+    color: #92400e;
+    border-radius: 99px;
+    margin-left: 6px;
+    vertical-align: middle;
   }
 
   @media (max-width: 768px) {

@@ -5,7 +5,9 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 import { base } from '../../i18n';
 
+const isDev = import.meta.env.DEV;
 const projects = (await getCollection('projects'))
+  .filter((e) => isDev || !e.data.draft)
   .sort((a, b) => a.data.order - b.data.order);
 ---
 

@@ -3,7 +3,9 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
+const isDev = import.meta.env.DEV;
 const entries = (await getCollection('lab-entries'))
+  .filter((e) => isDev || !e.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
@@ -22,6 +24,7 @@ const entries = (await getCollection('lab-entries'))
             <time class="mono">{formattedDate}</time>
             <div>
               <h3>{entry.data.title}</h3>
+              {entry.data.draft && <span class="draft-badge mono">Draft</span>}
               {entry.data.tags.length > 0 && (
                 <div class="entry-tags">
                   {entry.data.tags.map((tag) => (
@@ -71,5 +74,15 @@ const entries = (await getCollection('lab-entries'))
     background: var(--c-border-light);
     border-radius: 99px;
     color: var(--c-text-3);
+  }
+
+  .draft-badge {
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    background: #fef3c7;
+    color: #92400e;
+    border-radius: 99px;
+    margin-left: 6px;
+    vertical-align: middle;
   }
 </style>
