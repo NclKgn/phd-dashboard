@@ -1,0 +1,15 @@
+- id: lab-placeholder-1
+  name: "[Lab Name]"
+  pi: "[PI Name]"
+  institution: Arts et Métiers Institute of Technology
+  role: PhD Candidate
+  work: "[Describe your work in this lab]"
+  url: ""
+
+- id: lab-placeholder-2
+  name: "[Lab/Department Name]"
+  pi: "[Department Head]"
+  institution: Necker Hospital
+  role: CMF Surgery Fellow
+  work: "[Describe your clinical and research activities]"
+  url: ""
