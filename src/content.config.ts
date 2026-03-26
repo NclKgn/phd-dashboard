@@ -12,6 +12,7 @@ const newsletter = defineCollection({
     date: z.coerce.date(),
     summary: z.string(),
     tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -24,6 +25,7 @@ const projects = defineCollection({
     summary: z.string(),
     collaborators: z.array(z.string()).default([]),
     order: z.number().default(0),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -33,6 +35,7 @@ const misc = defineCollection({
     title: z.string(),
     category: z.string(),
     date: z.coerce.date().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -93,6 +96,7 @@ const labEntries = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
   }),
 });
 
@@ -104,6 +108,7 @@ const meetings = defineCollection({
     attendees: z.array(z.string()).default([]),
     decisions: z.array(z.string()).default([]),
     actions: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
   }),
 });
 
