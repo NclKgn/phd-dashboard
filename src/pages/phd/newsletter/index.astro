@@ -1,0 +1,100 @@
+---
+// src/pages/phd/newsletter/index.astro
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('newsletter'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout title="PhD Newsletter" description="Weekly research digests">
+  <div class="container section">
+    <h1>Newsletter</h1>
+    <p class="newsletter-subtitle">Weekly digests of PhD research progress.</p>
+
+    <div class="newsletter-list">
+      {posts.map((post) => {
+        const formattedDate = post.data.date.toLocaleDateString('en-GB', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        });
+        return (
+          <a href={`/phd/newsletter/${post.id}`} class="newsletter-item">
+            <time class="mono">{formattedDate}</time>
+            <div class="newsletter-item-body">
+              <h3>{post.data.title}</h3>
+              <p>{post.data.summary}</p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <div class="newsletter-rss">
+      <a href="/rss.xml" class="mono">RSS Feed &rarr;</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .newsletter-subtitle {
+    font-size: 0.95rem;
+    color: var(--c-text-2);
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .newsletter-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .newsletter-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--c-border-light);
+    text-decoration: none;
+    color: var(--c-text);
+    transition: background 0.15s;
+  }
+
+  .newsletter-item:hover {
+    background: var(--c-border-light);
+    margin: 0 calc(-1 * var(--space-md));
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+    border-radius: var(--radius-sm);
+  }
+
+  .newsletter-item time {
+    font-size: 0.78rem;
+    color: var(--c-text-3);
+    padding-top: 3px;
+  }
+
+  .newsletter-item h3 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .newsletter-item p {
+    font-size: 0.85rem;
+    color: var(--c-text-2);
+    line-height: 1.5;
+  }
+
+  .newsletter-rss {
+    margin-top: var(--space-xl);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 768px) {
+    .newsletter-item {
+      grid-template-columns: 1fr;
+      gap: var(--space-xs);
+    }
+  }
+</style>
