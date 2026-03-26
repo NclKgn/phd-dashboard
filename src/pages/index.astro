@@ -3,42 +3,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionPreview from '../components/SectionPreview.astro';
+import { t, getLocale } from '../i18n';
 
-const sections = [
-  {
-    title: 'PhD',
-    description: 'Exploring how skull base synchondroses shape craniofacial development through a multimodal, multiscale approach.',
-    href: '/phd',
-  },
-  {
-    title: 'Projects',
-    description: 'Research and clinical projects in craniofacial surgery and development.',
-    href: '/projects',
-  },
-  {
-    title: 'CV',
-    description: 'Education, clinical experience, and research milestones.',
-    href: '/cv',
-  },
-  {
-    title: 'Stack',
-    description: 'Methods and tools — from molecular biology to clinical imaging.',
-    href: '/stack',
-  },
-  {
-    title: 'Labs',
-    description: 'Affiliations, collaborations, and the teams behind the research.',
-    href: '/labs',
-  },
-  {
-    title: 'Misc',
-    description: 'Teaching, talks, and everything else.',
-    href: '/misc',
-  },
-];
+const ui = t(getLocale());
+const sectionKeys = ['phd', 'projects', 'cv', 'stack', 'labs', 'misc'] as const;
+const sectionHrefs: Record<string, string> = {
+  phd: '/phd', projects: '/projects', cv: '/cv',
+  stack: '/stack', labs: '/labs', misc: '/misc',
+};
+const sections = sectionKeys.map((key) => ({
+  title: ui.sections[key].title,
+  description: ui.sections[key].description,
+  href: sectionHrefs[key],
+}));
 ---
 
-<BaseLayout title="Home">
+<BaseLayout title="Home" fullbleed>
   <Hero />
 
   <div class="container">

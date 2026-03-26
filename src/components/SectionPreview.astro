@@ -1,5 +1,9 @@
 ---
 // src/components/SectionPreview.astro
+import { t, getLocale } from '../i18n';
+
+const ui = t(getLocale());
+
 interface Props {
   title: string;
   description: string;
@@ -7,7 +11,7 @@ interface Props {
   linkText?: string;
 }
 
-const { title, description, href, linkText = 'Explore' } = Astro.props;
+const { title, description, href, linkText = ui.common.explore } = Astro.props;
 ---
 
 <div class="section-preview">

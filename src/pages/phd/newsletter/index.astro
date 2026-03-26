@@ -2,7 +2,9 @@
 // src/pages/phd/newsletter/index.astro
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { t, getLocale } from '../../../i18n';
 
+const ui = t(getLocale());
 const posts = (await getCollection('newsletter'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
@@ -32,7 +34,7 @@ const posts = (await getCollection('newsletter'))
     </div>
 
     <div class="newsletter-rss">
-      <a href="/rss.xml" class="mono">RSS Feed &rarr;</a>
+      <a href="/rss.xml" class="mono">{ui.common.rssFeed} &rarr;</a>
     </div>
   </div>
 </BaseLayout>

@@ -3,21 +3,18 @@
 interface Props {
   title: string;
   category: string;
-  href: string;
 }
 
-const { title, category, href } = Astro.props;
+const { title, category } = Astro.props;
 ---
 
-<a href={href} class="misc-card card">
+<div class="misc-card card">
   <span class="misc-category small-caps">{category}</span>
   <h3 class="misc-title">{title}</h3>
-</a>
+</div>
 
 <style>
   .misc-card {
-    text-decoration: none;
-    color: var(--c-text);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);

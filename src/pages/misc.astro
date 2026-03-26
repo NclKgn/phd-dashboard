@@ -30,7 +30,6 @@ const categories = [...new Set(entries.map((e) => e.data.category))];
               <MiscCard
                 title={entry.data.title}
                 category={entry.data.category}
-                href={`#${entry.id}`}
               />
             ))}
           </div>

@@ -3,6 +3,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineEntry from '../components/TimelineEntry.astro';
 import { getCollection } from 'astro:content';
+import { t, getLocale } from '../i18n';
+
+const ui = t(getLocale());
 
 const allEntries = await getCollection('cv');
 
@@ -18,7 +21,7 @@ const sections = [
   <div class="container section">
     <div class="cv-header">
       <h1>Curriculum Vitae</h1>
-      <a href="#" class="cv-download mono">Download PDF &darr;</a>
+      <span class="cv-download mono">PDF coming soon</span>
     </div>
 
     {sections.map(({ key, label }) => {

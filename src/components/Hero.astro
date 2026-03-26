@@ -1,19 +1,20 @@
 ---
 // src/components/Hero.astro
+import motif from '../assets/skull-base-motif.svg';
+import { t, getLocale } from '../i18n';
+
+const ui = t(getLocale());
 ---
 
 <section class="hero">
   <div class="hero-bg" aria-hidden="true">
-    <img src="/src/assets/skull-base-motif.svg" alt="" class="hero-motif" />
+    <img src={motif.src} alt="" class="hero-motif" />
   </div>
 
   <div class="container hero-content">
     <h1 class="hero-name">Nicolas Kogane</h1>
-    <p class="hero-tagline small-caps">Surgeon &middot; Scientist &middot; Engineer</p>
-    <p class="hero-desc">
-      CMF surgeon at Necker Hospital. PhD candidate at Arts et Métiers.<br />
-      Exploring how skull base synchondroses shape craniofacial development.
-    </p>
+    <p class="hero-tagline small-caps">{ui.hero.tagline}</p>
+    <p class="hero-desc">{ui.hero.description}</p>
   </div>
 
   <div class="hero-scroll" aria-hidden="true">

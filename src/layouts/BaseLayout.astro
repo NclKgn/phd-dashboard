@@ -1,17 +1,23 @@
 ---
 // src/layouts/BaseLayout.astro
 import Nav from '../components/Nav.astro';
+import '../styles/global.css';
+import { t, getLocale } from '../i18n';
 
 interface Props {
   title: string;
   description?: string;
   noindex?: boolean;
+  fullbleed?: boolean;
 }
 
+const locale = getLocale();
+const ui = t(locale);
 const {
   title,
   description = 'Nicolas Kogane — Surgeon · Scientist · Engineer',
   noindex = false,
+  fullbleed = false,
 } = Astro.props;
 ---
 
@@ -25,20 +31,19 @@ const {
   {noindex && <meta name="robots" content="noindex, nofollow" />}
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="alternate" type="application/rss+xml" title="PhD Newsletter" href="/rss.xml" />
-  <link rel="stylesheet" href="/src/styles/global.css" />
 </head>
 <body>
   <Nav />
 
-  <main style="padding-top: var(--nav-h);">
+  <main style={fullbleed ? undefined : 'padding-top: var(--nav-h);'}>
     <slot />
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>Nicolas Kogane</span>
+      <span>{ui.footer.name}</span>
       <span class="footer-sep">&middot;</span>
-      <span>Surgeon &middot; Scientist &middot; Engineer</span>
+      <span>{ui.footer.tagline}</span>
     </div>
   </footer>
 

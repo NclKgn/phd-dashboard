@@ -1,12 +1,15 @@
 ---
 // src/components/Nav.astro
+import { t, getLocale } from '../i18n';
+
+const ui = t(getLocale());
 const navLinks = [
-  { href: '/phd', label: 'PhD' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/cv', label: 'CV' },
-  { href: '/stack', label: 'Stack' },
-  { href: '/labs', label: 'Labs' },
-  { href: '/misc', label: 'Misc' },
+  { href: '/phd', label: ui.nav.phd },
+  { href: '/projects', label: ui.nav.projects },
+  { href: '/cv', label: ui.nav.cv },
+  { href: '/stack', label: ui.nav.stack },
+  { href: '/labs', label: ui.nav.labs },
+  { href: '/misc', label: ui.nav.misc },
 ];
 
 const currentPath = Astro.url.pathname;
