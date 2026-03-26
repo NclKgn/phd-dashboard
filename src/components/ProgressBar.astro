@@ -1,0 +1,55 @@
+---
+// src/components/ProgressBar.astro
+interface Props {
+  label: string;
+  value: number;
+  color?: string;
+}
+
+const { label, value, color = 'var(--c-accent)' } = Astro.props;
+---
+
+<div class="progress-row">
+  <div class="progress-label">{label}</div>
+  <div class="progress-track">
+    <div class="progress-fill" style={`width: ${value}%; background: ${color};`}></div>
+  </div>
+  <div class="progress-value mono">{value}%</div>
+</div>
+
+<style>
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+  }
+
+  .progress-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    min-width: 100px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 6px;
+    background: var(--c-border-light);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.6s ease;
+  }
+
+  .progress-value {
+    font-size: 0.8rem;
+    font-weight: 500;
+    min-width: 40px;
+    text-align: right;
+    color: var(--c-text-2);
+  }
+</style>

@@ -1,0 +1,143 @@
+---
+// src/pages/phd/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProgressBar from '../../components/ProgressBar.astro';
+import { getCollection } from 'astro:content';
+
+const progressEntries = await getCollection('phd-progress');
+const overall = progressEntries.find((e) => e.data.id === 'overall');
+const metrics = progressEntries.filter((e) => e.data.id !== 'overall');
+---
+
+<BaseLayout title="PhD" description="PhD research on skull base synchondroses in craniofacial development">
+  <div class="container section">
+    <h1>PhD Research</h1>
+    <p class="phd-subtitle">Role of Skull Base Synchondroses in Craniofacial Development</p>
+
+    <section class="phd-narrative">
+      <h2>Context</h2>
+      <p>
+        Skull base synchondroses are cartilaginous growth plates situated at the
+        junctions of the bones forming the cranial base. They are essential drivers
+        of craniofacial growth, yet their biology and biomechanics remain poorly
+        understood — particularly in pathological conditions like achondroplasia.
+      </p>
+
+      <h2>Approach</h2>
+      <p>
+        This project uses a multimodal, multiscale strategy to decipher the role
+        of these structures. From molecular mapping with RNAscope and
+        immunofluorescence, through volumetric 3D imaging via LightSheet
+        microscopy on cleared specimens, to ex vivo biomechanical stimulation
+        and a clinical atlas of human synchondroses spanning fetal life to
+        skeletal maturity — each scale builds on the previous to form a
+        comprehensive picture.
+      </p>
+      <p>
+        Both control and achondroplasia models (mouse and human) are
+        investigated at every level.
+      </p>
+    </section>
+
+    <section class="phd-progress">
+      <h2>Progress</h2>
+      <div class="progress-card card">
+        {overall && (
+          <div class="progress-overall">
+            <span class="progress-overall-value mono">{overall.data.value}%</span>
+            <span class="progress-overall-label">overall advancement</span>
+          </div>
+        )}
+        <div class="progress-metrics">
+          {metrics.map((m) => (
+            <ProgressBar
+              label={m.data.label}
+              value={m.data.value}
+              color={m.data.color}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="phd-newsletter-link">
+      <h2>Newsletter</h2>
+      <p>
+        Weekly digests of research progress, distilled from the lab notebook.
+      </p>
+      <a href="/phd/newsletter" class="mono">Read the newsletter &rarr;</a>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .phd-subtitle {
+    font-size: 1rem;
+    color: var(--c-text-2);
+    font-style: italic;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .phd-narrative {
+    margin-bottom: var(--space-xl);
+  }
+
+  .phd-narrative h2 {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .phd-narrative p {
+    font-size: 0.95rem;
+    color: var(--c-text-2);
+    line-height: 1.75;
+    margin-bottom: var(--space-md);
+  }
+
+  .phd-progress {
+    margin-bottom: var(--space-xl);
+  }
+
+  .phd-progress h2 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .progress-card {
+    padding: var(--space-lg);
+  }
+
+  .progress-overall {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--c-border-light);
+  }
+
+  .progress-overall-value {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--c-text);
+  }
+
+  .progress-overall-label {
+    font-size: 0.85rem;
+    color: var(--c-text-3);
+  }
+
+  .phd-newsletter-link {
+    margin-top: var(--space-xl);
+  }
+
+  .phd-newsletter-link h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .phd-newsletter-link p {
+    font-size: 0.9rem;
+    color: var(--c-text-2);
+    margin-bottom: var(--space-md);
+  }
+</style>
