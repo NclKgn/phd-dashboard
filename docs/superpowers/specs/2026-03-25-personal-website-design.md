@@ -203,7 +203,10 @@ Astro content collections with typed schemas for:
 - `_posts/*.md` → `src/content/newsletter/` (reframed as newsletter digests)
 - `assets/css/style.css` → `src/styles/global.css` (rewritten to match new identity)
 
-## Future Features (Not in MVP)
+## Backlog
+
+### Design & Visual
+- **Hero SVG motif**: Replace placeholder skull base drawing with an anatomically accurate SVG traced from real sagittal cross-section references (Nicolas to provide reference images)
 
 ### Content & i18n
 - **Bilingual content**: French translations of all pages and content
