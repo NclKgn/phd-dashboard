@@ -1,12 +1,6 @@
-phd:
-  value: true
-projects:
-  value: true
-cv:
-  value: false
-stack:
-  value: false
-labs:
-  value: true
-misc:
-  value: true
+phd: true
+projects: true
+cv: false
+stack: false
+labs: true
+misc: true

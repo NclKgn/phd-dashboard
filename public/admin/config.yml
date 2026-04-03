@@ -261,33 +261,9 @@ collections:
         label: "Sections"
         file: src/data/visibility.yaml
         fields:
-          - label: PhD
-            name: phd
-            widget: object
-            fields:
-              - { label: Visible, name: value, widget: boolean, default: true }
-          - label: Projects
-            name: projects
-            widget: object
-            fields:
-              - { label: Visible, name: value, widget: boolean, default: true }
-          - label: CV
-            name: cv
-            widget: object
-            fields:
-              - { label: Visible, name: value, widget: boolean, default: true }
-          - label: Stack
-            name: stack
-            widget: object
-            fields:
-              - { label: Visible, name: value, widget: boolean, default: true }
-          - label: Labs
-            name: labs
-            widget: object
-            fields:
-              - { label: Visible, name: value, widget: boolean, default: true }
-          - label: Misc
-            name: misc
-            widget: object
-            fields:
-              - { label: Visible, name: value, widget: boolean, default: true }
+          - { label: PhD, name: phd, widget: boolean, default: true }
+          - { label: Projects, name: projects, widget: boolean, default: true }
+          - { label: CV, name: cv, widget: boolean, default: true }
+          - { label: Stack, name: stack, widget: boolean, default: true }
+          - { label: Labs, name: labs, widget: boolean, default: true }
+          - { label: Misc, name: misc, widget: boolean, default: true }
