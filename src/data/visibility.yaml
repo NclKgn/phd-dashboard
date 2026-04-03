@@ -1,6 +1,6 @@
 phd: true
 projects: true
 cv: false
-stack: false
+stack: true
 labs: true
 misc: false
