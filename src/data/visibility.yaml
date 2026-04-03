@@ -3,10 +3,10 @@ phd:
 projects:
   value: true
 cv:
-  value: true
+  value: false
 stack:
-  value: true
+  value: false
 labs:
-  value: true
+  value: false
 misc:
-  value: true
+  value: false
