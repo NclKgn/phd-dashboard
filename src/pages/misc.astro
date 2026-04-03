@@ -5,6 +5,15 @@ import MiscCard from '../components/MiscCard.astro';
 import { getCollection } from 'astro:content';
 
 const isDev = import.meta.env.DEV;
+
+if (!isDev) {
+  const vis = await getCollection('visibility');
+  const entry = vis.find((e) => e.id === 'misc');
+  if (!entry?.data.value) {
+    return Astro.redirect('/');
+  }
+}
+
 const entries = (await getCollection('misc'))
   .filter((e) => isDev || !e.data.draft)
   .sort((a, b) => {

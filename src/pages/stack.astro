@@ -4,6 +4,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import StackLayer from '../components/StackLayer.astro';
 import { getCollection } from 'astro:content';
 
+const isDev = import.meta.env.DEV;
+
+if (!isDev) {
+  const vis = await getCollection('visibility');
+  const entry = vis.find((e) => e.id === 'stack');
+  if (!entry?.data.value) {
+    return Astro.redirect('/');
+  }
+}
+
 const layers = (await getCollection('stack'))
   .sort((a, b) => a.data.order - b.data.order);
 ---

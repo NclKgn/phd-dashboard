@@ -5,6 +5,13 @@ import { getCollection, render } from 'astro:content';
 import { base } from '../../i18n';
 
 export async function getStaticPaths() {
+  const isDev = import.meta.env.DEV;
+  if (!isDev) {
+    const vis = await getCollection('visibility');
+    const entry = vis.find((e) => e.id === 'projects');
+    if (!entry?.data.value) return [];
+  }
+
   const projects = (await getCollection('projects'))
     .filter((project) => !project.data.draft);
   return projects.map((project) => ({

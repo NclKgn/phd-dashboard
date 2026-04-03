@@ -6,6 +6,15 @@ import { getCollection } from 'astro:content';
 import { base } from '../../i18n';
 
 const isDev = import.meta.env.DEV;
+
+if (!isDev) {
+  const vis = await getCollection('visibility');
+  const entry = vis.find((e) => e.id === 'projects');
+  if (!entry?.data.value) {
+    return Astro.redirect('/');
+  }
+}
+
 const projects = (await getCollection('projects'))
   .filter((e) => isDev || !e.data.draft)
   .sort((a, b) => a.data.order - b.data.order);

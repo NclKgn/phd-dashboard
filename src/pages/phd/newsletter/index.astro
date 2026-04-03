@@ -6,6 +6,15 @@ import { t, getLocale, base } from '../../../i18n';
 
 const ui = t(getLocale());
 const isDev = import.meta.env.DEV;
+
+if (!isDev) {
+  const vis = await getCollection('visibility');
+  const entry = vis.find((e) => e.id === 'phd');
+  if (!entry?.data.value) {
+    return Astro.redirect('/');
+  }
+}
+
 const posts = (await getCollection('newsletter'))
   .filter((e) => isDev || !e.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());

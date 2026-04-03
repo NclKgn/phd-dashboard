@@ -5,6 +5,16 @@ import ProgressBar from '../../components/ProgressBar.astro';
 import { getCollection } from 'astro:content';
 import { t, getLocale, base } from '../../i18n';
 
+const isDev = import.meta.env.DEV;
+
+if (!isDev) {
+  const vis = await getCollection('visibility');
+  const entry = vis.find((e) => e.id === 'phd');
+  if (!entry?.data.value) {
+    return Astro.redirect('/');
+  }
+}
+
 const ui = t(getLocale());
 const progressEntries = await getCollection('phd-progress');
 const overall = progressEntries.find((e) => e.id === 'overall');
